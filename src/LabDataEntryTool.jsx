@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import Papa from "papaparse";
 import {
-  tissueTypes,
   sampleStatusOptions,
   publicationStatusOptions,
   referenceGenomes,
   qcStatus,
-  cancerTypes
+  cancerTypes,
+  omicsTypes,
+  dataProcessingStages,
+  fileTypes
 } from "./ontologyOptions";
+
 
 const LabDataEntryTool = () => {
   const [formData, setFormData] = useState({
@@ -102,13 +105,16 @@ const LabDataEntryTool = () => {
 
   const renderInput = (key, value) => {
     const dropdowns = {
-      
       Sample_Status: sampleStatusOptions,
       Cancer_Type: cancerTypes,
       Publication_Status: publicationStatusOptions,
       Quality_Control_Status: qcStatus,
-      Reference_Genome: referenceGenomes
+      Reference_Genome: referenceGenomes,
+      omicsType: omicsTypes,
+      Data_Processing_Stage: dataProcessingStages,
+      File_Types: fileTypes
     };
+    
 
     if (dropdowns[key]) {
       return (
@@ -141,16 +147,16 @@ const LabDataEntryTool = () => {
       fields: ["Omics_Assay_ID", "Omics_Data_Types", "File_Types", "Data_Processing_Stage", "Assay_Technology", "Data_Format_Version", "Analysis_Pipeline_Used", "Reference_Genome"]
     },
     {
-      title: "Storage & Responsibility",
-      fields: ["Storage_Location", "Responsible_Person", "IRB_or_Consent_Notes", "Publication_Status", "DOI_or_Publication_Link"]
+      title: "OMICS",
+      fields: ["omicsType", "antibodyUsed", "spatialResolution", "targetProtein", "tissuePreservation"]
     },
     {
       title: "Quality & Metadata",
       fields: ["Date_Added", "Last_Updated", "Quality_Control_Status", "Batch_ID", "Notes"]
     },
     {
-      title: "Spatial/Proteomics Info",
-      fields: ["omicsType", "antibodyUsed", "spatialResolution", "targetProtein", "tissuePreservation"]
+      title: "Storage & Responsibility",
+      fields: ["Storage_Location", "Responsible_Person", "IRB_or_Consent_Notes", "Publication_Status", "DOI_or_Publication_Link"]
     }
   ];
 
