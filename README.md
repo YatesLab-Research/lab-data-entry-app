@@ -1,4 +1,9 @@
-# Lab Data Entry App
+<p align="center">
+  <a href="https://lab-data-entry-app.vercel.app/">
+    <img src="assets/labdataentryApp.png" alt="Lab Data Entry App" width="120"/>
+  </a>
+</p>
+
 
 ## Overview
 
