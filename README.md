@@ -1,7 +1,5 @@
 # Lab Data Entry App
 
-[![Vercel Status](https://vercel.com/api/badge?project=yates-projects)](https://vercel.com/yates-projects-232c3a3b/lab-data-entry-app)
-
 ## Overview
 
 The Lab Data Entry App is a user-friendly, React-based interface built to streamline the management of cancer research data in a structured, ontology-driven format. It supports data entry for breast, prostate, and pancreatic cancer studies, helping standardize metadata for omics experiments across multiple researchers in the lab.
@@ -11,12 +9,12 @@ Key features:
 - Supports omics metadata: RNA-seq, ATAC-seq, Proteomics, Spatial Transcriptomics, etc.
 - Bulk import and export of `.csv` files
 - Editable, scrollable table of imported data
-- Automatically deployed via [Vercel](https://vercel.com)
+- Automatically deployed via [Vercel]
 
 ## Deployment
 
-The app is continuously deployed via Vercel. Every push to `main` triggers a live update.  
-👉 Access the deployed version at: [https://your-app-url.vercel.app](https://your-app-url.vercel.app)
+👉 The app is continuously deployed via Vercel. Every push to `main` triggers a live update.  
+
 
 ## Technologies Used
 
