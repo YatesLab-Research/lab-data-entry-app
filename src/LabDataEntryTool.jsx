@@ -11,7 +11,6 @@ import {
   fileTypes
 } from "./ontologyOptions";
 
-
 const LabDataEntryTool = () => {
   const [formData, setFormData] = useState({
     Study_Name: "",
@@ -61,10 +60,26 @@ const LabDataEntryTool = () => {
     setCsvData(updatedData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
-    alert("Form submitted! Check console for details.");
+    try {
+      const res = await fetch("/api/saveToBlob", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const result = await res.json();
+
+      if (res.ok) {
+        alert(result.message || "Form data saved to Azure Blob!");
+        setFormData(prev => Object.fromEntries(Object.keys(prev).map(k => [k, ""])));
+      } else {
+        alert(result.error || "Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Submit error:", error);
+      alert("Failed to save data to Azure.");
+    }
   };
 
   const handleExport = () => {
@@ -114,7 +129,6 @@ const LabDataEntryTool = () => {
       Data_Processing_Stage: dataProcessingStages,
       File_Types: fileTypes
     };
-    
 
     if (dropdowns[key]) {
       return (
@@ -186,6 +200,7 @@ const LabDataEntryTool = () => {
         <div style={{ marginTop: "10px" }}>
           <button type="button" onClick={handleExport} style={{ marginRight: "10px", backgroundColor: "#007bff", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Export Form as CSV</button>
           <button type="submit" style={{ backgroundColor: "#28a745", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Submit</button>
+          <button type="button" onClick={() => window.open("/api/downloadFromBlob", "_blank")} style={{ marginLeft: "10px", backgroundColor: "#17a2b8", color: "white", padding: "10px", border: "none", borderRadius: "5px" }}>Download from Azure</button>
         </div>
       </form>
 
